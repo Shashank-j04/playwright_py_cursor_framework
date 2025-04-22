@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "playwright-pytest-framework"
+version = "0.1.0"
+description = "A Playwright-based test framework with pytest and pytest-bdd for UI and API testing"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pytest = "^7.4.3"
+playwright = "^1.40.0"
+pytest-bdd = "^7.0.1"
+pytest-playwright = "^0.4.3"
+requests = "^2.31.0"
+python-dotenv = "^1.0.0"
+pytest-html = "^4.1.1"
+pytest-xdist = "^3.3.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+addopts = "-v --html=reports/report.html -n auto"
+markers = [
+    "ui: UI tests",
+    "api: API tests",
+    "bdd: BDD tests"
+] 
