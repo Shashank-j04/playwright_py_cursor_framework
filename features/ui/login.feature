@@ -3,15 +3,26 @@ Feature: User Login
     I want to log in to the application
     So that I can access my account
 
+    Background:
+        Given I am on the "login" page
+
     Scenario: Successful login with valid credentials
-        Given I am on the login page
-        When I enter valid username "testuser" and password "testpass"
-        And I click the login button
-        Then I should be redirected to the dashboard
-        And I should see the welcome message "Welcome, testuser"
+        When I enter "testuser" in the "username" field
+        And I enter "testpass" in the "password" field
+        And I click on the "login button" element
+        Then I should be on the "dashboard" page
+        And I should see "Welcome, testuser"
 
     Scenario: Failed login with invalid credentials
-        Given I am on the login page
-        When I enter invalid username "wronguser" and password "wrongpass"
-        And I click the login button
-        Then I should see an error message "Invalid credentials" 
+        When I enter "wronguser" in the "username" field
+        And I enter "wrongpass" in the "password" field
+        And I click on the "login button" element
+        Then I should see "Invalid credentials"
+        And I should be on the "login" page
+
+    Scenario: Login with empty credentials
+        When I enter "" in the "username" field
+        And I enter "" in the "password" field
+        And I click on the "login button" element
+        Then I should see "Username and password are required"
+        And I should be on the "login" page 
